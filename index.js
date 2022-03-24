@@ -95,7 +95,7 @@ To run tests, run the following:
 \`
 ${data.tests}
 \`
-## Contact Me
+## Contact
 Have any questions? Please contact me at [${data.email}](mailto:${data.email}). View more of my work in GitHub at [${data.username}](https://github.com/${data.username})
 `
     fs.writeFile(`readme.md`, readme, (err) => err ? console.log(err) : console.log

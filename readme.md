@@ -1,7 +1,7 @@
-# Hello World!
+# Professional Readme Generator
 
 ## Description
-its cool
+This is a simple, but good quality Readme Generator.
 
 
 ## Table of Contents
@@ -23,20 +23,20 @@ npm i
 
 ## Usage
 
-its cool
+This Repo is just a demo for the Readme Generator.
 
 ## License
 ![license](https://img.shields.io/static/v1?label=license&message=Unlicense&color=success)
 
 ## Contributing
 
-its fun
+This Repo has no contributions, it is a demo.
 
 ## Tests
 
 To run tests, run the following:
 `
-i ran some tests
+npm run tests
 `
-## Contact Me
-Have any questions? Please contact me at [daniel@daniel.com](mailto:daniel@daniel.com). View more of my work in GitHub at [daniel](https://github.com/daniel)
+## Contact
+Have any questions? Please contact me at [daniel.loves.junk@gmail.com](mailto:daniel.loves.junk@gmail.com). View more of my work in GitHub at [danielhillsman](https://github.com/danielhillsman)
