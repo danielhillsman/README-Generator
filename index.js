@@ -1,21 +1,8 @@
 // TODO: Include packages needed for this application
 const fs = require(`fs`);
-const util = require(`util`);
-const generateMd = require(`./utils/generateMarkdown`);
-const writeFileAsync = util.promisify(fs.writeFile);
+const inquirer = require(`inquirer`);
 
-// TODO: Create an array of questions for user input
-const questions = [
-    {
-        type: "input",
-        message: "What is your GitHub user name?",
-        name: "username"
-    },
-    {
-        type: "input",
-        message: "What is your email address?",
-        name: "email"
-    },
+inquirer.prompt([
     {
         type: "input",
         message: "What is your project's title?",
@@ -30,11 +17,7 @@ const questions = [
         type: "list",
         message: "What license should your project have?",
         name: "license",
-        choices: [
-            "MIT",
-            "Apache 2.0",
-            "Unlicense",
-        ]
+        choices: ["MIT", "Apache 2.0", "Unlicense"]
     },
     {
         type: "input",
@@ -44,56 +27,77 @@ const questions = [
     },
     {
         type: "input",
-        message: "What command should be run to run tests?",
+        message: "What tests did you do?",
         name: "tests",
-        default: "npm run test"
     },
     {
         type: "input",
-        message: "What does the user need to know about using the repository?",
+        message: "What does user need to know about using the repository?",
         name: "usage"
     },
     {
         type: "input",
-        message: "What does the user need to know about contributing to the repository?",
+        message: "What does user need to know about contributing to the repository?",
         name: "contribute"
     },
-];
+    {
+        type: "input",
+        message: "What is your GitHub user name?",
+        name: "username"
+    },
+    {
+        type: "input",
+        message: "What is your email address?",
+        name: "email"
+    },
+])
+.then((data) => {
+    // Const for README generation fs
+    const readme =
 
-const inquirer = require(`inquirer`);
+`# ${data.title}
 
-const promptUser = () => {
-    return inquirer
-        .prompt(questions);
-}
-// Created function to write README file
-function writeToFile(fileName, data) {
-    return writeFileAsync(fileName, data);
-}
+## Description
+${data.description}
 
-// Created a function to initialize app
-function init() {
-    try {
-        console.log(`Welcome to the README generator.
-        Please answer the following questions:`)
 
-        // ask user for answers to questions
-        const answers = await promptUser();
+## Table of Contents
+* [Description](#description)
+- [Installation](#installation)
+* [Usage](#usage)
+- [License](#license)
+* [Contributing](#contributing)
+- [Tests](#tests)
+* [Contact](#contact)
 
-        // create markdown content from user answers
-        const fileContent = generateMd(answers);
+## Installation
 
-        // write markdown content to README.md file
-        await writeToFile(`./output/README.md`, fileContent);
+To install any dependencies, run the following:
 
-        // notify user that file has been written
-        console.log(`README.md created in output folder.`);
+\`
+${data.installation}
+\`
 
-    } catch (err) {
-        console.error(`Error creating README. File not created.`);
-        console.log(err);
-    }
-}
+## Usage
 
-// Function call to initialize app
-init();
+${data.usage}
+
+## License
+![license](https://img.shields.io/static/v1?label=license&message=${data.license}&color=success)
+
+## Contributing
+
+${data.contribute}
+
+## Tests
+
+To run tests, run the following:
+\`
+${data.tests}
+\`
+## Contact Me
+Have any questions? Please contact me at [${data.email}](mailto:${data.email}). View more of my work in GitHub at [${data.username}](https://github.com/${data.username})
+`
+    fs.writeFile(`readme.md`, readme, (err) => err ? console.log(err) : console.log
+    (`Successful!!`));
+});

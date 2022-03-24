@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/danielhillsman/README-Generator/issues"
   },
-  "homepage": "https://github.com/danielhillsman/README-Generator#readme"
+  "homepage": "https://github.com/danielhillsman/README-Generator#readme",
+  "keywords": [],
+  "dependencies": {
+    "inquirer": "^8.2.1"
+  }
 }
